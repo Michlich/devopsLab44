@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+case "$1" in
+    configure)
+        if [ -f "/home/vboxuser/devopsLab3/Makefile" ]; then
+            cd /home/vboxuser/devopsLab3
+            make || exit 1
+        else
+            make -C /app || exit 1
+        fi
+        ;;
+    abort-upgrade|abort-remove|abort-deconfigure)
+        ;;
+    *)
+        echo "ERRRR ($1)" >&2
+        exit 1
+        ;;
+esac
+exit 0

@@ -1,0 +1,9 @@
+Package: programm
+Version: 1.0
+Architecture: all
+Maintainer: Anton Polskih <o725b17@voenmeh.ru>
+Installed-Size: 8
+Depends: libc6 (>= 2.14), libstdc++6 (>= 4.8)
+Section: utils
+Priority: optional
+Description: hrenj.

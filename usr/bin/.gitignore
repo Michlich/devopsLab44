@@ -1,0 +1,4 @@
+*.o
+myapp
+usr/bin/*
+*.deb
