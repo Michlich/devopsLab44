@@ -1,0 +1,7 @@
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: 'my-app-custom'
+        static_configs:
+          # Точный внутренний адрес вашего сервиса в K8s
+          - targets: ['my-app-svc.default.svc.cluster.local:8081']

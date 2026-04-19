@@ -1,18 +1,16 @@
 CC = g++
-CFLAGS = -std=c++11 -Wall -Wextra
+CFLAGS = -std=c++11 -Wall -Wextra -I. -pthread
+LDFLAGS = -pthread
 TARGET = programm
 SOURCES = main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-
-$(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(TARGET)
-
+all: httplib.h $(TARGET)
+httplib.h:
+	wget -q https://raw.githubusercontent.com/yhirose/cpp-httplib/v0.15.3/httplib.h
+ $(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 clean:
-	rm -f $(OBJECTS) $(TARGET)
-    
-install: $(TARGET)
-	install -d $(DESTDIR)/usr/bin
-	install -m 755 $(TARGET) $(DESTDIR)/usr/bin/
-.PHONY: clean install
+	rm -f $(OBJECTS) $(TARGET) httplib.h
+.PHONY: all clean

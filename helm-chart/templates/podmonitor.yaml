@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: my-app-monitor
+  labels:
+    release: prom-stack  # ВАЖНО! Эта метка говорит Prometheus забрать этот файл
+spec:
+  selector:
+    matchLabels:
+      app: my-app        # Ищем поды с таким лейблом (он у вас есть)
+  podMetricsEndpoints:
+  - port: metrics        # Имя порта, которое мы задали в Шаге 1
+    path: /metrics       # Путь к метрикам
+    interval: 10s        # Как часто собирать
